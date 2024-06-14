@@ -1,2 +1,2 @@
-# chat1
- 1
+# CampusBuddyPlatform
+ CampusBuddyPlatform

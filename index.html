@@ -1,42 +1,37 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="zh-CN">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>运动聊天室</title>
-<style>
-  body {
-    background-image: url('background.jpg');
-    background-size: cover;
-    display: flex;
-    justify-content: center;
-    align-items: start;
-    height: 100vh;
-    margin: 0;
-  }
-  .login-container {
-    text-align: center;
-    margin-top: 100px;
-  }
-  .login-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    background-color: #f9a8d4;
-    color: white;
-    cursor: pointer;
-    font-size: 16px;
-  }
-  .title {
-    font-size: 2em;
-    color: #f9a8d4;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>校园搭子平台-开发者版本</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="login-container">
-  <div class="title">欢迎来到运动聊天室</div>
-  <button class="login-button">登录</button>
-</div>
+    <div id="main-container" class="container">
+        <h1>校园搭子平台-开发者版本</h1>
+        <button onclick="showLogin()">登录</button>
+    </div>
+    <div id="login-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeLogin()">&times;</span>
+            <h2>登录</h2>
+            <input type="text" id="username" placeholder="输入用户名">
+            <button onclick="login()">登录</button>
+        </div>
+    </div>
+    <div id="chatroom-container" class="container" style="display: none;">
+        <h1>选择一个群组</h1>
+        <div class="chatroom-buttons">
+            <button onclick="enterChatroom('游泳')">游泳</button>
+            <button onclick="enterChatroom('健身')">健身</button>
+            <button onclick="enterChatroom('跑步')">跑步</button>
+            <button onclick="enterChatroom('骑车')">骑车</button>
+            <button onclick="enterChatroom('网球')">网球</button>
+            <button onclick="enterChatroom('篮球')">篮球</button>
+            <button onclick="enterChatroom('剧本杀')">剧本杀</button>
+        </div>
+    </div>
+    <script src="scripts.js"></script>
 </body>
 </html>
+

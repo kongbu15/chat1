@@ -1,0 +1,76 @@
+body {
+    font-family: Arial, sans-serif;
+    background-image: url('background.jpg'); /* 确保你有一个背景图片 */
+    background-size: cover;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.container {
+    text-align: center;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 20px;
+    border-radius: 10px;
+}
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+.close-button {
+    float: right;
+    cursor: pointer;
+}
+h1 {
+    font-size: 3em;
+    color: #74b577; /* 选择你喜欢的颜色 */
+    margin-bottom: 20px;
+}
+
+button {
+    font-size: 1.5em;
+    padding: 10px 20px;
+    background-color: #ffcc00; /* 可爱的按钮颜色 */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #ff9900; /* 按钮悬停时的颜色 */
+}
+.chatroom-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.chatroom-buttons button {
+    margin: 10px;
+    font-size: 1.2em;
+    padding: 10px 15px;
+    background-color: #00ccff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.chatroom-buttons button:hover {
+    background-color: #0099cc;
+}
