@@ -1,21 +1,42 @@
 const express = require('express');
 const http = require('http');
-const WebSocket = require('ws');
+const socketIo = require('socket.io');
+const mongoose = require('mongoose');
+const Message = require('./models/message'); // 假设message模型文件路径
 
 const app = express();
 const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
+const io = socketIo(server);
 
-wss.on('connection', function connection(ws) {
-  ws.on('message', function incoming(message) {
-    wss.clients.forEach(function each(client) {
-      if (client !== ws && client.readyState === WebSocket.OPEN) {
-        client.send(message);
-      }
+// 配置Socket.io连接
+io.on('connection', (socket) => {
+    console.log('A user connected');
+
+    // 监听消息发送事件
+    socket.on('sendMessage', async (data) => {
+        const { group, user, message } = data;
+
+        // 保存消息到数据库
+        const newMessage = new Message({ group, user, message });
+        await newMessage.save();
+
+        // 广播消息给群组内所有用户
+        io.to(group).emit('receiveMessage', data);
     });
-  });
+
+    // 监听加入群组事件
+    socket.on('joinGroup', (group) => {
+        socket.join(group);
+        console.log(`User joined group: ${group}`);
+    });
+
+    // 监听断开连接事件
+    socket.on('disconnect', () => {
+        console.log('A user disconnected');
+    });
 });
 
-server.listen(3000, function() {
-  console.log('Server started on port 3000');
+const PORT = process.env.PORT || 3000;
+server.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });

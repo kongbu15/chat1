@@ -59,3 +59,25 @@ function sendMessage(roomName) {
         alert('请输入消息');
     }
 }
+// scripts.js
+const socket = io();
+
+function sendMessage() {
+    const messageInput = document.getElementById('messageInput');
+    const message = messageInput.value;
+    const group = 'running'; // 假设群组名称为'running'
+    const user = 'user1'; // 假设用户名称为'user1'
+
+    socket.emit('sendMessage', { group, user, message });
+    messageInput.value = '';
+}
+
+socket.on('receiveMessage', (data) => {
+    const messagesDiv = document.getElementById('messages');
+    const newMessage = document.createElement('div');
+    newMessage.textContent = `${data.user}: ${data.message}`;
+    messagesDiv.appendChild(newMessage);
+});
+
+// 加入群组
+socket.emit('joinGroup', 'running');
